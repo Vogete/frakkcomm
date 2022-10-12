@@ -1,0 +1,21 @@
+[project]
+name = "frakkcomm"
+version = "1.0"
+authors = [
+  { name="Zoltán Fraknói" },
+]
+description = "Custom TCP communication system"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Vogete/frakkcomm"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
