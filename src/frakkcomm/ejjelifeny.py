@@ -48,8 +48,9 @@ class Ejjelifeny(Eszkoz):
         byteArray = self.getByteArray(kezdo, cimzett, felado, message_id, parancs, adat)
 
         # print(self.intListToHexByteString(byteArray))
-
-        self.TCPSendData(self.intListToHexByteString(byteArray))
+        tcp_send_data = self.intListToHexByteString(byteArray)
+        self.TCPSendData(tcp_send_data)
+        return tcp_send_data
 
     def turnOffLight(self):
         ledConfig = {

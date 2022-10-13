@@ -7,7 +7,7 @@ class FrakkComm:
         self.port = port
         # self.comm_id = comm_id
         self.name = name
-        self.logger = logging()
+        # self.logger = logging()
 
     def TCPSendData(self, message: str):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

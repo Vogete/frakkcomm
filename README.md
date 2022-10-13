@@ -46,6 +46,7 @@ A Python kód lefordítása:
 - Python 3, pip
 - `pip install build`
 - `pip install wheel`
+- `pip install pytest`
 
 ### Lefordítás
 
@@ -54,3 +55,11 @@ python3 -m build
 ```
 
 A lefordított package pedig a `./dist` mappában van, a `*.whl` file ami általában kell.
+
+### Tesztelés
+
+Pytest-et használva könnyen lehet tesztelni a kódot.
+
+```sh
+python3 -m pytest tests
+```
