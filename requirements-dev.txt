@@ -1,2 +1,6 @@
+wheel
+build
+black
+pylint
 pytest
 pytest-mock

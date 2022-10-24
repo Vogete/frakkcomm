@@ -1,5 +1,6 @@
 from .frakkcomm import FrakkComm
 
+
 class Eszkoz(FrakkComm):
     def __init__(self, ip_address: str, port: int, eszkoz_id: int, name: str):
         # self.entity_id = None

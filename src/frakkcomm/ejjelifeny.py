@@ -1,7 +1,16 @@
 from .eszkoz import Eszkoz
 
+
 class Ejjelifeny(Eszkoz):
-    def __init__(self, ip_address: str, port: int, eszkoz_id: int, name: str, min_brightness = 0, max_brightness = 255):
+    def __init__(
+        self,
+        ip_address: str,
+        port: int,
+        eszkoz_id: int,
+        name: str,
+        min_brightness=0,
+        max_brightness=255,
+    ):
         self.min_brightness_pct = 0
         self.max_brightness_pct = 100
         self.min_brightness = min_brightness
@@ -9,7 +18,7 @@ class Ejjelifeny(Eszkoz):
 
         super(Ejjelifeny, self).__init__(ip_address, port, eszkoz_id, name)
 
-    def setData(self, controlledLEDs, brightness: int, speed = 1):
+    def setData(self, controlledLEDs, brightness: int, speed=1):
         adat = []
 
         adat.append(self.eszkoz_id)
@@ -17,19 +26,21 @@ class Ejjelifeny(Eszkoz):
         adat.append(0)
         adat[1] += speed
         if controlledLEDs["white"]:
-            adat[1] += (64)
+            adat[1] += 64
         if controlledLEDs["blue"]:
-            adat[1] += (128)
+            adat[1] += 128
 
         adat.append(brightness)
 
         return adat
 
     def convertBrightnessFromPercentage(self, percentage):
-        brightness = int((self.max_brightness-self.min_brightness)*(percentage/100))
+        brightness = int(
+            (self.max_brightness - self.min_brightness) * (percentage / 100)
+        )
         return brightness
 
-    def controlLight(self, controlledLEDs, brightness, speed = 1):
+    def controlLight(self, controlledLEDs, brightness, speed=1):
         kezdo = 0x55
         cimzett = 0xFF
         felado = 0x00
@@ -53,37 +64,26 @@ class Ejjelifeny(Eszkoz):
         return tcp_send_data
 
     def turnOffLight(self):
-        ledConfig = {
-            "white": False,
-            "blue": False
-        }
+        ledConfig = {"white": False, "blue": False}
         self.controlLight(ledConfig, self.min_brightness)
 
-    def turnOnBlueLight(self, brightness = None):
+    def turnOnBlueLight(self, brightness=None):
         if brightness == None:
             brightness = self.max_brightness
 
-        ledConfig = {
-            "white": False,
-            "blue": True
-        }
+        ledConfig = {"white": False, "blue": True}
         self.controlLight(ledConfig, brightness)
 
-    def turnOnWhiteLight(self, brightness = None):
+    def turnOnWhiteLight(self, brightness=None):
         if brightness == None:
             brightness = self.max_brightness
 
-        ledConfig = {
-            "white": True,
-            "blue": False
-        }
+        ledConfig = {"white": True, "blue": False}
         self.controlLight(ledConfig, brightness)
-
-
 
 
 # Example hex command:
-    # Lampa ID: 0x41
+# Lampa ID: 0x41
 # Light ON:  55 09 FF 00 F4 56 41 C1 8B CB
 # Light Off: 55 09 FF 00 F4 56 41 01 00 16
 

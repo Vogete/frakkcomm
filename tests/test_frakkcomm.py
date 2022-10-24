@@ -1,9 +1,12 @@
 from unittest import mock
 from frakkcomm.ejjelifeny import Ejjelifeny
 
+
 class TestFrakkComm:
+    """FrakkComm class tesztek"""
 
     def test_program_running(self, mocker, monkeypatch):
+        """Program futtatas teszt."""
 
         ejjelifeny = Ejjelifeny("127.0.0.1", 8023, 1, "feny1", 0, 255)
 
@@ -18,6 +21,7 @@ class TestFrakkComm:
         assert control_light
 
     def test_blue_color_turns_on(self, mocker, monkeypatch):
+        """Ejjelifeny kek feny felkapcsolasa teszt."""
 
         ejjelifeny = Ejjelifeny("127.0.0.1", 8023, 1, "feny1", 0, 255)
 
