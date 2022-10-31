@@ -56,6 +56,27 @@ python3 -m build
 
 A lefordított package pedig a `./dist` mappában van, a `*.whl` file ami általában kell.
 
+Ha ezt a helyi verziót akarjuk felinstallálni akkor csak ennyit kell futattni: `pip install .\dist\frakkcomm-1.0.0-py3-none-any.whl`
+
+Ehhez nem kell PyPI-ra publisholni, viszont a file-nak így lokálisan elérhetőnek kell lennie. Home Assistant-nál ez pl kicsit macerás, szóval PyPI-ra érdemes publisholni általában.
+
+### PyPI publish és install
+
+GitHub Actions-t használva automatikusan tudunk PyPI-ra publisholni.
+
+Először növeld meg a verziószámot a `pyproject.toml` fájlban [Semver](https://semver.org/)-t használva (pl. `1.0.1`),
+
+Utána push-olj a main branch-re, várd meg amíg minden teszt lefut rendesen. Ha minden lefutott, akkor csinálj egy új taget a main-ből a `vX.X.X` (pl. `v1.0.1`) formátumban:
+
+```sh
+git tag v1.0.1
+git push --origin tags
+```
+
+Ez automatikusan buildel egy új package-et, és felrakja PyPi-ra: <https://pypi.org/project/frakkcomm/>
+
+Ezután fel lehet installálni a `pip install frakkcomm` paranccsal bárhova.
+
 ### Tesztelés
 
 Pytest-et használva könnyen lehet tesztelni a kódot.
